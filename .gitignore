@@ -1,1 +1,4 @@
 build_win/
+build/
+bin/
+obj/

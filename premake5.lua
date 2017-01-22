@@ -3,10 +3,11 @@ solution "SEAPI"
     platforms { "x86", "x64" }
     location "build"
     characterset "MBCS" 
+    symbols "On"
     defines {"_CRT_SECURE_NO_DEPRECATE" }
     objdir "obj/%{prj.name}/%{cfg.buildcfg}%{cfg.platform}"
     targetdir "bin/%{cfg.buildcfg}%{cfg.platform}"
-    startproject "lua"
+    startproject "IntelSEAPI"
    
     filter "platforms:x86"
         architecture "x86"
@@ -49,9 +50,9 @@ solution "SEAPI"
             "sea_itt_lib/Utils.h",
         }
         filter "platforms:x86"
-            targetname "sea_itt_lib32"
+            targetname "IntelSEAPI32"
         filter "platforms:x64"
-            targetname "sea_itt_lib64"
+            targetname "IntelSEAPI64"
     
         filter "system:windows"
             includedirs {
@@ -79,7 +80,7 @@ solution "SEAPI"
                 
     project "IntelSEAPI"
         location "build"
-        kind "StaticLib"
+        kind "ConsoleApp"
         includedirs {
             "ittnotify/include",
         }
@@ -91,7 +92,7 @@ solution "SEAPI"
             "itt_notify.hpp",
         }
         links {
-            "sea_itt_lib"
+            "sea_itt_lib", "ittnotify"
         }
         
         
